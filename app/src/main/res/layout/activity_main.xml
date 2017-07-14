@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    tools:context="microsoft.aspnet.signalr.smscodeview.MainActivity">
+
+    <microsoft.aspnet.signalr.smscodeview.view.SmsCodeView
+        android:id="@+id/sms_code_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#ccc"
+        android:gravity="center"
+        app:cellCount="4"
+        app:cellGravity="center"
+        app:cellInputType="number"
+        app:cellTextColor="#212121"
+        app:cellTextSize="18sp"
+        app:cellUnderLineColor="#ffffff"
+        app:cellUnderLineErrorColor="#f44336"
+        app:cellRightLeftMargin="4dp"
+        app:cellCursorColor="#66bb6a"/>
+</FrameLayout>

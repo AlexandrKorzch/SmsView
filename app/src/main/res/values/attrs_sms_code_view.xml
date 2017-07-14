@@ -1,0 +1,20 @@
+<resources>
+    <declare-styleable name="SmsCodeView">
+        <attr name="cellCount" format="integer"/>
+        <attr name="cellUnderLineColor" format="color"/>
+        <attr name="cellUnderLineErrorColor" format="color"/>
+        <attr name="cellTextColor" format="color"/>
+        <attr name="cellTextSize" format="dimension"/>
+        <attr name="cellRightLeftMargin" format="dimension"/>
+        <attr name="cellCursorColor" format="color"/>
+        <attr name="cellInputType" format="enum">
+            <enum name="number" value="1"/>
+            <enum name="text" value="2"/>
+        </attr>
+        <attr name="cellGravity" format="enum">
+            <enum name="center" value="1"/>
+            <enum name="start" value="2"/>
+            <enum name="end" value="3"/>
+        </attr>
+    </declare-styleable>
+</resources>
