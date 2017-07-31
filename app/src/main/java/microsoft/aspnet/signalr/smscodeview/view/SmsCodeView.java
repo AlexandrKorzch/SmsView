@@ -31,10 +31,7 @@ import static android.view.KeyEvent.KEYCODE_DEL;
 
 public class SmsCodeView extends LinearLayout {
 
-    private static final String TAG = "SmsCodeView";
-
     private int cellCount = 4;
-    private int cellWidth = 20;
     private int cellLength = 1;
     private int cellTextSize = 45;
     private int cellRightLeftMargin = 12;
@@ -107,7 +104,7 @@ public class SmsCodeView extends LinearLayout {
     @Override
     protected void onLayout(boolean changed, int left, int t, int right, int b) {
         super.onLayout(changed, left, t, right, b);
-        cellWidth = (right - left) / cellCount - cellRightLeftMargin * 2;
+        int cellWidth = (right - left) / cellCount - cellRightLeftMargin * 2;
         if (notDrawed) drawEdits(cellWidth);
     }
 
@@ -130,8 +127,10 @@ public class SmsCodeView extends LinearLayout {
         LayoutParams params = new LayoutParams(cellWidth, LayoutParams.WRAP_CONTENT);
         params.setMargins(cellRightLeftMargin, 0, cellRightLeftMargin, 0);
         for (CellEditText editText : edits) {
-            editText.setLayoutParams(params);
-            addView(editText);
+            if (editText != null) {
+                editText.setLayoutParams(params);
+                addView(editText);
+            }
         }
     }
 
@@ -177,9 +176,13 @@ public class SmsCodeView extends LinearLayout {
 
     private void insertSymbols(final char[] numbers) {
         for (int i = 0; i < numbers.length; i++) {
-            edits[i].setText(String.valueOf(numbers[i]));
+            if (edits[i] != null) {
+                edits[i].setText(String.valueOf(numbers[i]));
+            }
         }
-        edits[cellCount - 1].setSelection(cellLength);
+        if (edits[cellCount - 1] != null) {
+            edits[cellCount - 1].setSelection(cellLength);
+        }
     }
 
     private void reloadView(final char[] numbers) {
@@ -187,10 +190,8 @@ public class SmsCodeView extends LinearLayout {
         notDrawed = true;
         cellCount = numbers.length;
         edits = new CellEditText[cellCount];
-        new Handler().postDelayed(() -> {
-            requestLayout();
-            new Handler().postDelayed(() -> insertSymbols(numbers), 300);
-        }, 300);
+        addEdits();
+        insertSymbols(numbers);
     }
 
     private void nextFocus(int index) {
@@ -225,7 +226,6 @@ public class SmsCodeView extends LinearLayout {
             InputFilter[] iFilters = new InputFilter[]{
                     mLengthFilter,
                     (source, start, end, dest, dstart, dend) -> {
-                        Log.d(TAG, "initFilters: ");
                         if (source.equals("") && TextUtils.isEmpty(getText().toString())) {
                             nextFocus(mIndex);
                         } else if (!TextUtils.isEmpty(getText().toString())) {
@@ -269,8 +269,10 @@ public class SmsCodeView extends LinearLayout {
                 field.setAccessible(true);
                 field.set(editor, drawables);
             } catch (Exception ignored) {
-                Log.d(TAG, "setCursorColor: ignored - " + ignored.getMessage());
+                Log.e("error", "setCursorColor: ignored - " + ignored.getMessage());
             }
         }
     }
+
+    private static final String TAG = "SmsCodeView";
 }

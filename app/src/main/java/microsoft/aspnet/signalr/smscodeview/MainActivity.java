@@ -2,6 +2,7 @@ package microsoft.aspnet.signalr.smscodeview;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import microsoft.aspnet.signalr.smscodeview.view.SmsCodeView;
 
@@ -14,13 +15,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final SmsCodeView smsCodeView = (SmsCodeView)findViewById(R.id.sms_code_view);
-
-        smsCodeView.showCode("1324");
-        smsCodeView.errorByIndex(true, 2);
+        SmsCodeView smsCodeView = (SmsCodeView)findViewById(R.id.sms_code_view);
+//        smsCodeView.showCode("132");
 //        smsCodeView.totalError(true);
-//        String code = smsCodeView.getCode();
-//        Log.d(TAG, "onCreate: code - "+code);
+//        smsCodeView.errorByIndex(true,2);
+
+        String code = smsCodeView.getCode();
+
+        Log.d(TAG, "onCreate: code - "+code);
+
+
+
 
     }
 }

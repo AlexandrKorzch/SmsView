@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
+    android:background="#283548"
     tools:context="microsoft.aspnet.signalr.smscodeview.MainActivity">
 
     <microsoft.aspnet.signalr.smscodeview.view.SmsCodeView
@@ -14,15 +15,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#ccc"
+        android:background="#00000000"
         android:gravity="center"
         app:cellCount="4"
         app:cellGravity="center"
         app:cellInputType="number"
-        app:cellTextColor="#212121"
+        app:cellTextColor="#ffffff"
         app:cellTextSize="18sp"
         app:cellUnderLineColor="#ffffff"
         app:cellUnderLineErrorColor="#f44336"
         app:cellRightLeftMargin="4dp"
-        app:cellCursorColor="#66bb6a"/>
+        app:cellCursorColor="#808680"/>
 </FrameLayout>
